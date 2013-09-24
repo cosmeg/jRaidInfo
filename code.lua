@@ -27,7 +27,7 @@ function SlashCmdList.JRI_RAIDINFO(msg, editbox)
   end
 
   for i = 1, GetNumRFDungeons() do
-    local id, name, typeID, subtype, minLevel, maxLevel, level3, level4, level5, result09, result10, result11, name2, result13, raidSize, description, result16, result17, result18 = GetRFDungeonInfo(i)
+    local id, name, typeID, subtypeID, minLevel, maxLevel, recLevel, minRecLevel, maxRecLevel, expansionLevel, groupID, textureFilename, difficulty, maxPlayers, description, isHoliday = GetRFDungeonInfo(i)
     local numEncounters, numCompleted = GetLFGDungeonNumEncounters(id);
     for j = 1, numEncounters do
       local bossName, texture, isKilled = GetLFGDungeonEncounterInfo(id, j)
