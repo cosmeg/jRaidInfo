@@ -14,15 +14,25 @@ function SlashCmdList.JRI_RAIDINFO(msg, editbox)
     print(name)
   end
 
-  for i = 1, GetNumRFDungeons() do
-    local id, name, typeID, subtype, minLevel, maxLevel, level3, level4, level5, result09, result10, result11, name2, result13, raidSize, description, result16, result17, result18 = GetRFDungeonInfo(i)
+  for i = 1, GetNumFlexRaidDungeons() do
+    local id, name, typeID, subtype, minLevel, maxLevel = GetFlexRaidDungeonInfo(i)
     local numEncounters, numCompleted = GetLFGDungeonNumEncounters(id);
-    -- https://github.com/tekkub/wow-ui-source/blob/233e69aa6e44523d3b439c16b91013362059328e/FrameXML/LFGFrame.lua#L1553
     -- not sure if there's a good way to show the bosses I *haven't* looted
     for j = 1, numEncounters do
       local bossName, texture, isKilled = GetLFGDungeonEncounterInfo(id, j)
       if isKilled then
-        print(name .. ": " .. bossName)
+        print("Flex " .. name .. ": " .. bossName)
+      end
+    end
+  end
+
+  for i = 1, GetNumRFDungeons() do
+    local id, name, typeID, subtype, minLevel, maxLevel, level3, level4, level5, result09, result10, result11, name2, result13, raidSize, description, result16, result17, result18 = GetRFDungeonInfo(i)
+    local numEncounters, numCompleted = GetLFGDungeonNumEncounters(id);
+    for j = 1, numEncounters do
+      local bossName, texture, isKilled = GetLFGDungeonEncounterInfo(id, j)
+      if isKilled then
+        print("LFR " .. name .. ": " .. bossName)
       end
     end
   end
