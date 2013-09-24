@@ -1,0 +1,9 @@
+## Interface: 50400
+## Author: me
+## Title: jRI
+## Notes: Chat-based raid info
+
+## LoadManagers: AddonLoader
+## X-LoadOn-Always: delayed
+
+code.lua
