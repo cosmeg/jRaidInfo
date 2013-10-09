@@ -18,7 +18,7 @@ function SlashCmdList.JRI_RAIDINFO(msg, editbox)
   local flex_ids = {
     726,
     728,
-    --729,
+    729,
     --730
   }
   for i, id in ipairs(flex_ids) do
@@ -30,7 +30,7 @@ function SlashCmdList.JRI_RAIDINFO(msg, editbox)
   local lfr_ids = {
     716,
     717,
-    --724,
+    724,
     --725
   }
   for i, id in ipairs(lfr_ids) do
