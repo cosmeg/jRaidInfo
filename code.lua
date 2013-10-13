@@ -16,26 +16,18 @@ function SlashCmdList.JRI_RAIDINFO(msg, editbox)
   end
 
   local flex_ids = {
-    726,
-    728,
-    729,
-    --730
+    {type="Flex", id=726, size=4},
+    {type="Flex", id=728, size=4},
+    {type="Flex", id=729, size=3},
+    --{type="Flex", id=730, size=3}
+    {type="LFR", id=716, size=4},
+    {type="LFR", id=717, size=4},
+    {type="LFR", id=724, size=3}
+    --{type="LFR", id=725, size=3}
   }
-  for i, id in ipairs(flex_ids) do
-    local dungeonName, typeId, subtypeID, minLvl, maxLvl, recLvl, minRecLvl, maxRecLvl, expansionId, groupId, textureName, difficulty, maxPlayers, dungeonDesc, isHoliday, repAmount, forceHide = GetLFGDungeonInfo(id)
-    local numEncounters, numCompleted = GetLFGDungeonNumEncounters(id)
-    print ("Flex " .. dungeonName .. ": " .. numCompleted .. "/4" )
-  end
-
-  local lfr_ids = {
-    716,
-    717,
-    724,
-    --725
-  }
-  for i, id in ipairs(lfr_ids) do
-    local dungeonName, typeId, subtypeID, minLvl, maxLvl, recLvl, minRecLvl, maxRecLvl, expansionId, groupId, textureName, difficulty, maxPlayers, dungeonDesc, isHoliday, repAmount, forceHide = GetLFGDungeonInfo(id)
-    local numEncounters, numCompleted = GetLFGDungeonNumEncounters(id)
-    print ("LFR " .. dungeonName .. ": " .. numCompleted .. "/4" )
+  for i, t in ipairs(flex_ids) do
+    local dungeonName, typeId, subtypeID, minLvl, maxLvl, recLvl, minRecLvl, maxRecLvl, expansionId, groupId, textureName, difficulty, maxPlayers, dungeonDesc, isHoliday, repAmount, forceHide = GetLFGDungeonInfo(t.id)
+    local numEncounters, numCompleted = GetLFGDungeonNumEncounters(t.id)
+    print (t.type.." "..dungeonName..": "..numCompleted.."/"..t.size)
   end
 end
