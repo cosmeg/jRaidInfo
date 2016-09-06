@@ -26,6 +26,8 @@ function SlashCmdList.JRI_RAIDINFO(msg, editbox)
   ]]
 
   local flex_ids = {
+    -- No LFR yet in legion
+    --[[
     {type="LFR", id=849, size=3},  -- Walled City
     {type="LFR", id=850, size=3},  -- Arcane Sanctum
     {type="LFR", id=851, size=1},  -- Imperator's Rise
@@ -38,6 +40,7 @@ function SlashCmdList.JRI_RAIDINFO(msg, editbox)
     {type="LFR", id=984, size=3},  -- Basion of Shadows
     {type="LFR", id=985, size=3},  -- Destructor's Rise
     {type="LFR", id=986, size=1}   -- The Black Gate
+    ]]
   }
   for i, t in ipairs(flex_ids) do
     local dungeonName, typeId, subtypeID, minLvl, maxLvl, recLvl, minRecLvl, maxRecLvl, expansionId, groupId, textureName, difficulty, maxPlayers, dungeonDesc, isHoliday, repAmount, forceHide = GetLFGDungeonInfo(t.id)

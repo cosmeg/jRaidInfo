@@ -1,4 +1,4 @@
-## Interface: 50400
+## Interface: 70000
 ## Author: me
 ## Title: jRI
 ## Notes: Chat-based raid info
