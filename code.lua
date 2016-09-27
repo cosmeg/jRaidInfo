@@ -25,24 +25,16 @@ function SlashCmdList.JRI_RAIDINFO(msg, editbox)
   end
   ]]
 
-  local flex_ids = {
-    -- No LFR yet in legion
-    --[[
-    {type="LFR", id=849, size=3},  -- Walled City
-    {type="LFR", id=850, size=3},  -- Arcane Sanctum
-    {type="LFR", id=851, size=1},  -- Imperator's Rise
-    {type="LFR", id=847, size=3},  -- Slagworks
-    {type="LFR", id=846, size=3},  -- The Black Forge
-    {type="LFR", id=848, size=3},  -- Iron Assembly
-    {type="LFR", id=823, size=1},  -- Blackhand's Crucible
-    {type="LFR", id=982, size=3},  -- Hellbreach
-    {type="LFR", id=983, size=3},  -- Halls of Blood
-    {type="LFR", id=984, size=3},  -- Basion of Shadows
-    {type="LFR", id=985, size=3},  -- Destructor's Rise
-    {type="LFR", id=986, size=1}   -- The Black Gate
-    ]]
+  local wings = {
+    {type="LFR", id=1287, size=3},  -- Darkbough
+    {type="LFR", id=1288, size=3},  -- Tormented Guardians
+    {type="LFR", id=1289, size=1},  -- Rift of Aln
+    {type="LFR", id=1290, size=3},  -- Arcing Aqueducts
+    {type="LFR", id=1291, size=3},  -- Royal Athenaeum
+    {type="LFR", id=1292, size=3},  -- Nightspire
+    {type="LFR", id=1293, size=1}  -- Betrayer's Rise
   }
-  for i, t in ipairs(flex_ids) do
+  for i, t in ipairs(wings) do
     local dungeonName, typeId, subtypeID, minLvl, maxLvl, recLvl, minRecLvl, maxRecLvl, expansionId, groupId, textureName, difficulty, maxPlayers, dungeonDesc, isHoliday, repAmount, forceHide = GetLFGDungeonInfo(t.id)
     local numEncounters, numCompleted = GetLFGDungeonNumEncounters(t.id)
     local color = numCompleted < t.size and "|CFFFF0000" or ""
