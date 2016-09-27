@@ -17,10 +17,12 @@ function SlashCmdList.JRI_RAIDINFO(msg, editbox)
 
   --[[
   -- Uncomment to list IDs, for below
+  local accountExpansionLevel = GetAccountExpansionLevel()
   for i = 1, GetNumRFDungeons() do
     local id, name, typeID, subtypeID, minLevel, maxLevel, recLevel, minRecLevel, maxRecLevel, expansionLevel, groupID, textureFilename, difficulty, maxPlayers, description, isHoliday, bonusRepAmount, minPlayers = GetRFDungeonInfo(i)
-    if expansionLevel == GetAccountExpansionLevel() then
-      print(id.." - "..typeID..":"..subtypeID.." - "..name)
+    if expansionLevel == accountExpansionLevel then
+      local isAvailable, isAvailableToPlayer, hideIfUnmet = IsLFGDungeonJoinable(id)
+      print(id.." - "..typeID..":"..subtypeID.." - "..name.." "..tostring(isAvailable))
     end
   end
   ]]
@@ -35,10 +37,13 @@ function SlashCmdList.JRI_RAIDINFO(msg, editbox)
     {type="LFR", id=1293, size=1}  -- Betrayer's Rise
   }
   for i, t in ipairs(wings) do
-    local dungeonName, typeId, subtypeID, minLvl, maxLvl, recLvl, minRecLvl, maxRecLvl, expansionId, groupId, textureName, difficulty, maxPlayers, dungeonDesc, isHoliday, repAmount, forceHide = GetLFGDungeonInfo(t.id)
-    local numEncounters, numCompleted = GetLFGDungeonNumEncounters(t.id)
-    local color = numCompleted < t.size and "|CFFFF0000" or ""
+    local isAvailable, _, _ = IsLFGDungeonJoinable(t.id)
+    if isAvailable then
+      local dungeonName, typeId, subtypeID, minLvl, maxLvl, recLvl, minRecLvl, maxRecLvl, expansionId, groupId, textureName, difficulty, maxPlayers, dungeonDesc, isHoliday, repAmount, forceHide = GetLFGDungeonInfo(t.id)
+      local numEncounters, numCompleted = GetLFGDungeonNumEncounters(t.id)
+      local color = numCompleted < t.size and "|CFFFF0000" or ""
 
-    print (t.type.." "..dungeonName..": "..color..numCompleted.."|r/"..t.size)
+      print(t.type.." "..dungeonName..": "..color..numCompleted.."|r/"..t.size)
+    end
   end
 end
