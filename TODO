@@ -1,6 +1,12 @@
 legion world bosses?
 these don't appear in /raidinfo, must be some other mechanic
 might need to hardcode quest ids
+GetNumSavedWorldBosses is for older expansions
+possibly I can find the "active" quest and see if it's completed
+  http://www.wowhead.com/quest=43192/terror-of-the-deep
+  Type: Epic Elite World Quest
+  /dump C_TaskQuest.GetQuestsForPlayerByMapID(GetCurrentMapAreaID())
+    this does not show completed quests
 
 
 automatically discover instance ids
