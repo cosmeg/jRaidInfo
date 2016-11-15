@@ -31,6 +31,7 @@ function SlashCmdList.JRI_RAIDINFO(msg, editbox)
     {type="LFR", id=1287, size=3},  -- Darkbough
     {type="LFR", id=1288, size=3},  -- Tormented Guardians
     {type="LFR", id=1289, size=1},  -- Rift of Aln
+    {type="LFR", id=1411, size=3},  -- Trial of Valor
     {type="LFR", id=1290, size=3},  -- Arcing Aqueducts
     {type="LFR", id=1291, size=3},  -- Royal Athenaeum
     {type="LFR", id=1292, size=3},  -- Nightspire
