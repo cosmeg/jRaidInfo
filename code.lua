@@ -12,18 +12,22 @@ end
 
 
 local function shortageBonusRoles(id)
-    local _, forTank, forHealer, forDamage, _ =
+    local eligible, forTank, forHealer, forDamage, itemCount, money, xp =
       GetLFGRoleShortageRewards(id, LFG_ROLE_SHORTAGE_RARE)
     local canBeTank, canBeHealer, canBeDamager = C_LFGList.GetAvailableRoles()
 
     local bonuses = {}
 
-    if forTank and canBeTank then
-      table.insert(bonuses, bonusText("TANK"))
-    elseif forHealer and canBeHealer then
-      table.insert(bonuses, bonusText("HEALER"))
-    elseif forDamage and canBeDamager then
-      table.insert(bonuses, bonusText("DAMAGER"))
+    -- Some types (i.e. legion normal?) may have a shortage but not actually
+    -- have any rewards
+    if eligible and (itemCount > 0 or money > 0 or xp > 0) then
+      if forTank and canBeTank then
+        table.insert(bonuses, bonusText("TANK"))
+      elseif forHealer and canBeHealer then
+        table.insert(bonuses, bonusText("HEALER"))
+      elseif forDamage and canBeDamager then
+        table.insert(bonuses, bonusText("DAMAGER"))
+      end
     end
 
     return table.concat(bonuses, " ")
@@ -72,8 +76,9 @@ function SlashCmdList.JRI_RAIDINFO(msg, editbox)
   end
 
   -- Daily heroic
+  local bestChoice = GetRandomDungeonBestChoice()
   do
-    local id = GetRandomDungeonBestChoice()
+    local id = bestChoice
     local dungeonInfo = { GetLFGDungeonInfo(id) }
     local name = dungeonInfo[1]
     local isAvailable, _ = IsLFGDungeonJoinable(id)
@@ -88,6 +93,18 @@ function SlashCmdList.JRI_RAIDINFO(msg, editbox)
       end
 
       print(out)
+    end
+  end
+
+  -- Other LFD dungeons - with shortage only
+  for i = 1, GetNumRandomDungeons() do
+    local id, name = GetLFGRandomDungeonInfo(i)
+    local isAvailable, _ = IsLFGDungeonJoinable(id)
+    if isAvailable and id ~= bestChoice then
+      local bonuses = shortageBonusRoles(id)
+      if string.len(bonuses) > 0 then
+        print(name.." ("..bonuses..")")
+      end
     end
   end
 end
