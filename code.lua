@@ -56,7 +56,7 @@ function SlashCmdList.JRI_RAIDINFO(msg, editbox)
     local dungeonInfo = { GetRFDungeonInfo(i) }
     local id = dungeonInfo[1]
     local name = dungeonInfo[2]
-    local isAvailable, _, _ = IsLFGDungeonJoinable(id)
+    local isAvailable, _ = IsLFGDungeonJoinable(id)
     if isAvailable then
       local numEncounters, numCompleted = GetLFGDungeonNumEncounters(id)
       local color = numCompleted < numEncounters and "|CFFFF0000" or ""
@@ -68,7 +68,26 @@ function SlashCmdList.JRI_RAIDINFO(msg, editbox)
       end
 
       print(out)
+    end
+  end
 
+  -- Daily heroic
+  do
+    local id = GetRandomDungeonBestChoice()
+    local dungeonInfo = { GetLFGDungeonInfo(id) }
+    local name = dungeonInfo[1]
+    local isAvailable, _ = IsLFGDungeonJoinable(id)
+    if isAvailable then
+      local doneToday, _ = GetLFGDungeonRewards(id)
+      local color = not doneToday and "|CFFFF0000" or ""
+      local out = color..name.."|r"
+
+      local bonuses = shortageBonusRoles(id)
+      if string.len(bonuses) > 0 then
+        out = out.." ("..bonuses..")"
+      end
+
+      print(out)
     end
   end
 end

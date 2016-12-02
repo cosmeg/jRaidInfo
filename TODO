@@ -16,7 +16,5 @@ blizz code does this by looking at the map name
 https://github.com/tomrus88/BlizzardInterfaceCode/blob/2663abbc70d6fcbacb33d5ab542ad7b6f1fc2306/Interface/FrameXML/RaidFinder.lua#L189
 
 
-add daily heroic dungeon
-with bonus role
-look how this is done in the /lfd dialog
-https://github.com/tomrus88/BlizzardInterfaceCode/blob/master/Interface/FrameXML/LFDFrame.lua
+show shortage for other dungeon types
+i.e. timewalker
