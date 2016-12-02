@@ -7,6 +7,8 @@ possibly I can find the "active" quest and see if it's completed
   Type: Epic Elite World Quest
   /dump C_TaskQuest.GetQuestsForPlayerByMapID(GetCurrentMapAreaID())
     this does not show completed quests
+SavedInstances now supports this apparently:
+https://www.wowace.com/projects/saved_instances
 
 
 group raid finder wings by dungeon
