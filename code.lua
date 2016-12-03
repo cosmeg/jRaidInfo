@@ -19,7 +19,7 @@ local function shortageBonusRoles(id)
     local bonuses = {}
 
     -- Some types (i.e. legion normal?) may have a shortage but not actually
-    -- have any rewards
+    -- give any rewards
     if eligible and (itemCount > 0 or money > 0 or xp > 0) then
       if forTank and canBeTank then
         table.insert(bonuses, bonusText("TANK"))
@@ -81,6 +81,28 @@ function SlashCmdList.JRI_RAIDINFO(msg, editbox)
   end
   if not worldBossKilled then
     print("|CFFFF0000World boss|r")
+    -- Attempt to determine which world boss is up
+    local zones = {
+      1015,
+      1018,
+      1024,
+      1017,
+      1033,
+      1014,
+      1021,
+      1096
+    }
+    local broken_isles_mapid = 1007
+    for _, mapId in ipairs(zones) do
+      local quests = C_TaskQuest.GetQuestsForPlayerByMapID(mapId,
+        broken_isles_mapid)
+      for _, q in ipairs(quests) do
+        local _, _, _, rarity, isElite, _ = GetQuestTagInfo(q.questId)
+        if rarity == LE_WORLD_QUEST_QUALITY_EPIC and isElite then
+          print("|CFFFFFF00World boss:|r "..GetQuestLink(q.questId))
+        end
+      end
+    end
   end
 
   -- Raid Finder
