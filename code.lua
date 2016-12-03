@@ -55,6 +55,34 @@ function SlashCmdList.JRI_RAIDINFO(msg, editbox)
     print(name)
   end
 
+  -- Legion world bosses
+  -- Note this tracks the associated world quest, so may not be accurate if for
+  -- some reason you kill the boss and the quest is not completed. It shouldn't
+  -- give a false negative however.
+  local worldBossQuests = {
+    42269,
+    42270,
+    42779,
+    42819,
+    43192,
+    43193,
+    43448,
+    43512,
+    43513,
+    43985,
+    44287
+  }
+  local worldBossKilled = false
+  for _, id in ipairs(worldBossQuests) do
+    if IsQuestFlaggedCompleted(id) then
+      worldBossKilled = true
+      print(GetQuestLink(id))
+    end
+  end
+  if not worldBossKilled then
+    print("|CFFFF0000World boss|r")
+  end
+
   -- Raid Finder
   for i = 1, GetNumRFDungeons() do
     local dungeonInfo = { GetRFDungeonInfo(i) }

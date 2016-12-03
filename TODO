@@ -1,16 +1,32 @@
-legion world bosses?
-these don't appear in /raidinfo, must be some other mechanic
-might need to hardcode quest ids
-GetNumSavedWorldBosses is for older expansions
+indicate *which* world boss is not killed
 possibly I can find the "active" quest and see if it's completed
   http://www.wowhead.com/quest=43192/terror-of-the-deep
   Type: Epic Elite World Quest
-  /dump C_TaskQuest.GetQuestsForPlayerByMapID(GetCurrentMapAreaID())
-    this does not show completed quests
-SavedInstances now supports this apparently:
-https://www.wowace.com/projects/saved_instances
+    how can I find this?
+/dump C_TaskQuest.GetQuestsForPlayerByMapID(GetCurrentMapAreaID())
+  this does not show completed quests
+/dump C_TaskQuest.GetQuestsForPlayerByMapID(1007)
+  doesn't seem to work
+/dump GetCurrentMapAreaID()
+/dump C_TaskQuest.GetQuestsForPlayerByMapID(1014)
+  this is dalaran
+/dump C_TaskQuest.GetQuestsForPlayerByMapID(1015)
+  azsuna - works
+/run SetMapByID(1007)
+/dump C_TaskQuest.GetQuestsForPlayerByMapID(1007, true)
+  still nothing
+/run foobar = GetCurrentMapAreaID()
+/dump foobar
+/dump C_TaskQuest.GetQuestsForPlayerByMapID(foobar)
+WQL iterates over the zones
+
+scan all world quests and see if any are up
+  if I can just filter by type this would work too
 
 
 group raid finder wings by dungeon
 blizz code does this by looking at the map name
 https://github.com/tomrus88/BlizzardInterfaceCode/blob/2663abbc70d6fcbacb33d5ab542ad7b6f1fc2306/Interface/FrameXML/RaidFinder.lua#L189
+
+
+pull stuff out into functions
