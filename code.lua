@@ -38,6 +38,7 @@ SLASH_JRI_RAIDINFO1 = '/ri'
 function SlashCmdList.JRI_RAIDINFO(msg, editbox)
   -- It's likely this information won't be correct until the next call
   RequestRaidInfo()
+  RequestLFDPlayerLockInfo()
 
   -- Traditional instances - shown in /raidinfo
   for i = 1, GetNumSavedInstances() do
