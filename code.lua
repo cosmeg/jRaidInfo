@@ -82,6 +82,8 @@ function SlashCmdList.JRI_RAIDINFO(msg, editbox)
   end
   if not worldBossKilled then
     print("|CFFFF0000World boss|r")
+  end
+  do
     -- Attempt to determine which world boss is up
     local zones = {
       1015,
@@ -100,7 +102,7 @@ function SlashCmdList.JRI_RAIDINFO(msg, editbox)
       for _, q in ipairs(quests) do
         local _, _, _, rarity, isElite, _ = GetQuestTagInfo(q.questId)
         if rarity == LE_WORLD_QUEST_QUALITY_EPIC and isElite then
-          print("|CFFFFFF00World boss:|r "..GetQuestLink(q.questId))
+          print("|CFFFF0000Epic elite world quest:|r "..GetQuestLink(q.questId))
         end
       end
     end
