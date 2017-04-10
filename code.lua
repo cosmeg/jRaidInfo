@@ -71,7 +71,11 @@ function SlashCmdList.JRI_RAIDINFO(msg, editbox)
     43512,
     43513,
     43985,
-    44287
+    44287,
+    46945,  -- Si'vash
+    46947,  -- Brutallus
+    46948,  -- Malificus
+    47061   -- Apocron
   }
   local worldBossKilled = false
   for _, id in ipairs(worldBossQuests) do
