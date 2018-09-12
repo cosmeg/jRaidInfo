@@ -56,26 +56,17 @@ function SlashCmdList.JRI_RAIDINFO(msg, editbox)
     print(name)
   end
 
-  -- Legion world bosses
+  -- World bosses
   -- Note this tracks the associated world quest, so may not be accurate if for
   -- some reason you kill the boss and the quest is not completed. It shouldn't
   -- give a false negative however.
   local worldBossQuests = {
-    42269,
-    42270,
-    42779,
-    42819,
-    43192,
-    43193,
-    43448,
-    43512,
-    43513,
-    43985,
-    44287,
-    46945,  -- Si'vash
-    46947,  -- Brutallus
-    46948,  -- Malificus
-    47061   -- Apocron
+    52181,  -- t'zane
+    52169,  -- ji'arak
+    52157,  -- hailstone construct
+    52163,  -- azurethos
+    52166,  -- warbringer yenajz
+    52196   -- dunegorger kraulok
   }
   local worldBossKilled = false
   for _, id in ipairs(worldBossQuests) do
@@ -90,19 +81,12 @@ function SlashCmdList.JRI_RAIDINFO(msg, editbox)
   do
     -- Attempt to determine which world boss is up
     local zones = {
-      1015,
-      1018,
-      1024,
-      1017,
-      1033,
-      1014,
-      1021,
-      1096
+      875,  -- zandalar
+      876,  -- kul'tiras
+      14    -- arathi highlands
     }
-    local broken_isles_mapid = 1007
     for _, mapId in ipairs(zones) do
-      local quests = C_TaskQuest.GetQuestsForPlayerByMapID(mapId,
-        broken_isles_mapid)
+      local quests = C_TaskQuest.GetQuestsForPlayerByMapID(mapId)
       for _, q in ipairs(quests) do
         local _, _, _, rarity, isElite, _ = GetQuestTagInfo(q.questId)
         if rarity == LE_WORLD_QUEST_QUALITY_EPIC and isElite then

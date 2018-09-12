@@ -1,3 +1,25 @@
+might need to add more zones for other warfront bosses
+
+
+update for bfa
+might need to wait until world bosses are released for this
+it's possible they aren't world quests, etc.
+https://wow.gamepedia.com/MapID
+  says this has been removed in 8.0
+https://wow.gamepedia.com/API_GetCurrentMapAreaID
+/dump GetCurrentMapAreaID()
+  ==> gone
+https://us.battle.net/forums/en/wow/topic/20762318007
+  "The World Map has been almost entirely re-written, and all map API was removed."
+https://github.com/tomrus88/BlizzardInterfaceCode/blob/master/Interface/AddOns/Blizzard_Deprecated/UIMapIDToWorldMapAreaID.lua
+/api s map
+https://github.com/tomrus88/BlizzardInterfaceCode/blob/master/Interface/AddOns/Blizzard_APIDocumentation/MapDocumentation.lua
+I need something that returns the uiMapID
+https://wow.gamepedia.com/Patch_8.0.1/API_changes
+/dump WorldMapFrame:GetMapID()
+  this works
+
+
 group raid finder wings by dungeon
 blizz code does this by looking at the map name
 https://github.com/tomrus88/BlizzardInterfaceCode/blob/2663abbc70d6fcbacb33d5ab542ad7b6f1fc2306/Interface/FrameXML/RaidFinder.lua#L189
